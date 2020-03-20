@@ -1,10 +1,10 @@
 import React from "react";
 import "./menu-item.styles.scss";
 
-export default function MenuItem({ title, imageUrl }) {
+export default function MenuItem({ title, imageUrl, size }) {
     return (
         <div
-            className="menu-item"
+            className={`${size} menu-item`}
             style={{ backgroundImage: `url(${imageUrl})` }}
         >
             <div className="content">
