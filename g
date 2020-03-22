@@ -47,33 +47,25 @@ const #{component_name} = () => (
 );
 
 export default #{component_name};
-].lstrip()
+].strip()
 
 styles_template = %Q[
 .#{component_filename} {
 
 }
-].lstrip()
+].strip()
 
 if component_type == 'p'
   dirname = "#{PAGES_DIR}/#{component_filename}"
-  unless Dir.exist?(dirname)
-    Dir.mkdir(dirname)
-    write_template(dirname, component_output_filename, component_template)
-    write_template(dirname, styles_output_filename, styles_template)
-    puts "created a page at #{dirname}"
-  else
-    puts "Component already exists at #{dirname}!"
-  end
 else
   dirname = "#{COMPONENTS_DIR}/#{component_filename}"
-  unless Dir.exist?(dirname)
-    Dir.mkdir(dirname)
-    write_template(dirname, component_output_filename, component_template)
-    write_template(dirname, styles_output_filename, styles_template)
-    puts "created a component at #{dirname}"
-  else
-    puts "Component already exists at #{dirname}!"
-  end
 end
 
+unless Dir.exist?(dirname)
+  Dir.mkdir(dirname)
+  write_template(dirname, component_output_filename, component_template)
+  write_template(dirname, styles_output_filename, styles_template)
+  puts "created a page at #{dirname}"
+else
+  puts "Component already exists at #{dirname}!"
+end
