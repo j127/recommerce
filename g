@@ -5,10 +5,10 @@
 # Usage:
 #
 # Create a component in the src/components dir:
-# $ ./rc c form-input
+# $ ./g c form-input
 #
 # Create a page in the src/pages dir:
-# $ ./rc p contact
+# $ ./g p contact
 #
 # Use snake-case.
 
