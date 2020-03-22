@@ -32,7 +32,6 @@ component_output_filename = "#{component_filename}.component.js";
 styles_output_filename = "#{component_filename}.styles.scss";
 
 def write_template(d, fname, content)
-  # Write the files.
   File.open("#{d}/#{fname}", 'w') { |f| f.write(content) }
 end
 
@@ -49,6 +48,7 @@ const #{component_name} = () => (
 export default #{component_name};
 ].strip()
 
+# This is the template for the component's scss file.
 styles_template = %Q[
 .#{component_filename} {
 
