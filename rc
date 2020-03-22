@@ -69,7 +69,7 @@ else
   dirname = "#{COMPONENTS_DIR}/#{component_filename}"
   unless Dir.exist?(dirname)
     Dir.mkdir(dirname)
-    write_template(dirname, component_output_filename, template)
+    write_template(dirname, component_output_filename, component_template)
     write_template(dirname, styles_output_filename, styles_template)
     puts "created a component at #{dirname}"
   else
