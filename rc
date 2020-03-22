@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+# React Component Generator
+#
+# Usage:
+#
+# Create a component:
+# $ ./rc c form-input
+#
+# Create a page:
+# $ ./rc p contact
+
+COMPONENTS_DIR = './src/components'
+PAGES_DIR = './src/pages'
+
+component_type = ARGV[0]
+component_filename = ARGV[1]
+
+component_base_name = component_filename.split('-')
+                    .map { |w| w.capitalize() }
+                    .join('')
+
+component_name = if component_type == 'p'
+                   "#{component_base_name}Page"
+                 else
+                   component_base_name
+                 end
+
+template = %Q[
+import React from "react";
+
+import "./#{component_filename}.styles.scss";
+
+const #{component_name} = () => (
+    <div className="#{component_filename}">#{component_name}</div>
+);
+
+export default #{component_name};
+]
+
+puts component_name
+puts component_type
+puts template
