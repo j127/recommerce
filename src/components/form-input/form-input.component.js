@@ -1,7 +1,28 @@
+/**
+ * Represents a styled form input that can accept various types of
+ * props.
+ */
 import React from "react";
 
 import "./form-input.styles.scss";
 
-const FormInput = () => <div className="form-input"></div>;
+const FormInput = ({ handleChange, label, ...otherProps }) => (
+    <div className="group">
+        <input
+            className="form-input"
+            onChange={handleChange}
+            {...otherProps}
+        />
+        {label ? (
+            <label
+                className={`${
+                    otherProps.value.length ? "shrink" : ""
+                } form-input-label`}
+            >
+                {label}
+            </label>
+        ) : null}
+    </div>
+);
 
 export default FormInput;
