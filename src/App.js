@@ -29,16 +29,12 @@ class App extends React.Component {
 
                 // subscribe to changes
                 userRef.onSnapshot(snapshot => {
-                    this.setState(
-                        {
-                            currentUser: {
-                                id: snapshot.id,
-                                ...snapshot.data(),
-                            },
+                    this.setState({
+                        currentUser: {
+                            id: snapshot.id,
+                            ...snapshot.data(),
                         },
-                        () => console.log(this.state)
-                    );
-                    console.log("x", this.state);
+                    });
                 });
             }
 
