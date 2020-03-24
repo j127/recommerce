@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { connect } from "react-redux";
 
 import { auth } from "../../firebase/firebase.utils";
 
@@ -32,4 +33,12 @@ const Header = ({ currentUser }) => (
     </div>
 );
 
-export default Header;
+// extract the `currentUser` out of the state
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser,
+});
+
+// `connect` is a HOC that takes a function, either `mapStateToProps` or
+// `mapDispatchToProps`, and returns a function that takes a component and
+// returns a modified component.
+export default connect(mapStateToProps)(Header);
