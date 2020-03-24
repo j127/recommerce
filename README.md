@@ -101,8 +101,9 @@ const mapStateToProps = state => ({
     currentUser: state.user.currentUser,
 });
 
-// `connect` is a HOC that takes a function, either `mapStateToProps` or
-// `mapDispatchToProps`, and returns a function that takes a component and
-// returns a modified component.
+// `connect` is a HOC that takes `(mapStateToProps,
+// mapDispatchToProps)`, and returns a function that takes a component
+// and returns a modified component. Either mapping function can be
+// omitted.
 export default connect(mapStateToProps)(Header);
 ```
