@@ -1,13 +1,22 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { toggleCartHidden } from "../../redux/cart/cart.actions";
 
 import "./cart-icon.styles.scss";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 
-const CartIcon = () => (
-    <div className="cart-icon">
+const CartIcon = ({ toggleCartHidden }) => (
+    <div className="cart-icon" onClick={toggleCartHidden}>
         <ShoppingIcon className="shopping-icon" />
         <span className="item-count">0</span>
     </div>
 );
 
-export default CartIcon;
+// The lines below make the `toggleCartHidden` action available as a
+// prop in the component.
+const mapDispatchToProps = dispatch => ({
+    toggleCartHidden: () => dispatch(toggleCartHidden()),
+});
+
+export default connect(null, mapDispatchToProps)(CartIcon);
