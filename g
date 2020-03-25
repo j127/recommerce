@@ -10,10 +10,14 @@
 # Create a page in the src/pages dir:
 # $ ./g p contact
 #
+# Create redux reducer/action/types files in the src/redux dir:
+# $ ./g r cart
+#
 # Use snake-case.
 
 COMPONENTS_DIR = './src/components'
 PAGES_DIR = './src/pages'
+REDUX_DIR = './src/redux'
 
 component_type = ARGV[0]
 component_filename = ARGV[1]
@@ -55,17 +59,42 @@ styles_template = %Q[
 }
 ].strip()
 
+reducer_template = %Q[
+import { #{component_name}ActionTypes } from "./#{component_filename}.types";
+].strip()
+
+actions_template = %Q[
+import { #{component_name}ActionTypes } from "./#{component_filename}.types";
+].strip()
+
+types_template = %Q[
+export const #{component_name}ActionTypes = {
+
+};
+].strip()
+
 if component_type == 'p'
   dirname = "#{PAGES_DIR}/#{component_filename}"
+elsif component_type == 'r'
+  dirname = "#{REDUX_DIR}/#{component_filename}"
 else
   dirname = "#{COMPONENTS_DIR}/#{component_filename}"
 end
 
 unless Dir.exist?(dirname)
   Dir.mkdir(dirname)
-  write_template(dirname, component_output_filename, component_template)
-  write_template(dirname, styles_output_filename, styles_template)
-  puts "created a React component at #{dirname}"
+  # write redux files
+  if component_type == 'r'
+    write_template(dirname, "#{component_filename}.reducer.js", reducer_template)
+    write_template(dirname, "#{component_filename}.actions.js", actions_template)
+    write_template(dirname, "#{component_filename}.types.js", types_template)
+    puts "created Redux files at #{dirname}"
+  else
+    # write component files
+    write_template(dirname, component_output_filename, component_template)
+    write_template(dirname, styles_output_filename, styles_template)
+    puts "created React component files at #{dirname}"
+  end
 else
-  puts "Component already exists at #{dirname}!"
+  puts "files already exist at #{dirname}!"
 end
