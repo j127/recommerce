@@ -107,3 +107,6 @@ const mapStateToProps = state => ({
 // omitted.
 export default connect(mapStateToProps)(Header);
 ```
+
+- `mapStateToProps` -- get some piece of state out of redux and give it to the component via the `connect` HOC.
+- `mapDispatchToProps` -- get an action from redux and make it available as a prop via the `connect` HOC.
