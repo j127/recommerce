@@ -35,8 +35,7 @@ firestore
 Alternate syntax:
 
 ```javascript
-firestore
-    .doc("/users/someId/cartItems/anotherId");
+firestore.doc("/users/someId/cartItems/anotherId");
 ```
 
 ## Redux
@@ -53,9 +52,9 @@ A reducer is a slice of state. For example, a User Reducer or a Shop Reducer. (R
 
 The unidirectional cycle of data flow:
 
-- Root Reducer passes state as props to components.
-- Components use actions to update reducers (slices of state).
-- The reducers are part of the Root Reducer.
+-   Root Reducer passes state as props to components.
+-   Components use actions to update reducers (slices of state).
+-   The reducers are part of the Root Reducer.
 
 ### Install
 
@@ -108,5 +107,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps)(Header);
 ```
 
-- `mapStateToProps` -- get some piece of state out of redux and give it to the component via the `connect` HOC.
-- `mapDispatchToProps` -- get an action from redux and make it available as a prop via the `connect` HOC.
+-   `mapStateToProps` -- get some piece of state out of redux and give it to the component via the `connect` HOC.
+-   `mapDispatchToProps` -- get an action from redux and make it available as a prop via the `connect` HOC.
