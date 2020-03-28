@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import { toggleCartHidden } from "../../redux/cart/cart.actions";
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
@@ -22,8 +23,8 @@ const mapDispatchToProps = dispatch => ({
 
 // Get the cartItems out of redux and count all the cart items.
 // This rerenders too often, so we'll add the reselect library to memoize.
-const mapStateToProps = state => ({
-    itemCount: selectCartItemsCount(state),
+const mapStateToProps = createStructuredSelector({
+    itemCount: selectCartItemsCount,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartIcon);
