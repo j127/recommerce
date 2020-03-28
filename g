@@ -88,6 +88,8 @@ unless Dir.exist?(dirname)
     write_template(dirname, "#{component_filename}.reducer.js", reducer_template)
     write_template(dirname, "#{component_filename}.actions.js", actions_template)
     write_template(dirname, "#{component_filename}.types.js", types_template)
+    write_template(dirname, "#{component_filename}.selectors.js", "");
+    write_template(dirname, "#{component_filename}.utils.js", "");
     puts "created Redux files at #{dirname}"
   else
     # write component files
